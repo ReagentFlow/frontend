@@ -1,13 +1,22 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import Main from './components/Main';
+import Home from './components/Home';
+import ReagentsTable from './components/ReagentsTable';
+import Settings from './components/Settings';
 import './App.css';
 
 function App() {
     return (
         <div className="App">
             <Header />
-            <Main />
+            <main>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/reagents" element={<ReagentsTable />} />
+                    <Route path="/settings" element={<Settings />} />
+                </Routes>
+            </main>
         </div>
     );
 }

@@ -12,8 +12,8 @@ function Header() {
                 <div className="logo-text">ReagentFlow</div>
             </div>
             <div className="nav-buttons">
-                <Link to="/" className="nav-link">Home</Link>
-                <Link to="/reagents" className="nav-link">Reagents</Link>
+                <Link to="/" className="nav-link">Главная</Link>
+                <Link to="/reagents" className="nav-link">Реагенты</Link>
             </div>
             <Link to="/settings" className="settings-button">
                 <img src={settingsIcon} alt="settings" />

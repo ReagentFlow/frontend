@@ -10,7 +10,9 @@ function Header() {
                 <img src={logo} className="logo" alt="logo" />
                 <div className="logo-text">ReagentFlow</div>
             </div>
-            <img src={settingsIcon} className="settings-button" alt="settings" />
+            <button className='settings-button'>
+                <img src={settingsIcon} alt="settings" />
+            </button>
         </div>
     );
 }

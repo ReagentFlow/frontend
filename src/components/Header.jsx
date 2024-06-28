@@ -15,9 +15,11 @@ function Header() {
                 <Link to="/" className="nav-link">Главная</Link>
                 <Link to="/reagents" className="nav-link">Реагенты</Link>
             </div>
-            <Link to="/settings" className="settings-button">
-                <img src={settingsIcon} alt="settings" />
-            </Link>
+            <div className='right-section'>
+                <Link to="/settings" className="settings-button">
+                    <img src={settingsIcon} alt="settings" />
+                </Link>
+            </div>
         </div>
     );
 }

@@ -5,7 +5,7 @@ function Settings() {
     return (
         <div className="settings-container">
             <div className="settings-banner">
-                <h1>Настройки (в разработке)</h1>
+                <h1>Настройки</h1>
             </div>
         </div>
     );

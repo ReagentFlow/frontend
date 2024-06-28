@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import '../styles/ReagentsTable.css';
 
 const sampleData = [
-    { id: 1, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 1 шкаф 2' },
-    { id: 2, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 4 шкаф 2' },
-    { id: 3, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 9 шкаф 3' },
-    { id: 4, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 3 шкаф 5' },
-    { id: 5, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 2 шкаф 1' },
-    { id: 6, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 1 шкаф 5' },
-    { id: 7, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 4 шкаф 3' },
-    { id: 8, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 4 шкаф 2' },
-    { id: 9, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 5 шкаф 2' },
-    { id: 10, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 3 шкаф 2' },
+    { id: 1010, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 1 шкаф 2' },
+    { id: 2453, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 4 шкаф 2' },
+    { id: 3234, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 9 шкаф 3' },
+    { id: 4110, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 3 шкаф 5' },
+    { id: 5110, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 2 шкаф 1' },
+    { id: 6323, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 1 шкаф 5' },
+    { id: 2217, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 4 шкаф 3' },
+    { id: 1218, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 4 шкаф 2' },
+    { id: 9209, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 5 шкаф 2' },
+    { id: 1110, name: 'хлористый кальций', mass: '10г', volume: '10мл', expiry: 'осталось 10 дней', location: 'лаборатория 3 шкаф 2' },
 ];
 
 function ReagentsTable() {
@@ -26,8 +26,8 @@ function ReagentsTable() {
             <table>
                 <thead>
                     <tr>
-                        <th>№</th>
-                        <th>Название реагента</th>
+                        <th>ID</th>
+                        <th>Название</th>
                         <th>Масса</th>
                         <th>Объем</th>
                         <th>Срок годности</th>

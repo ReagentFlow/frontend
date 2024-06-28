@@ -12,13 +12,13 @@ table {
 th,
 td {
     padding: 12px 15px;
-    border: 1px solid #ddd;
 }
 
 th {
     background-color: #41AB92;
     color: white;
     font-weight: bold;
+    border: 3px solid #F2F7F7;
 }
 
 tbody tr:nth-child(even) {

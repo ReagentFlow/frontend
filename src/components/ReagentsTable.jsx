@@ -18,7 +18,6 @@ function ReagentsTable() {
     const [reagents, setReagents] = useState([]);
 
     useEffect(() => {
-        // For now, use the sample data. Replace this with a fetch call to your API when ready.
         setReagents(sampleData);
     }, []);
 

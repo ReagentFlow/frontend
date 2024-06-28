@@ -1,7 +1,6 @@
 .table-container {
     padding: 20px;
     margin-top: 105px;
-    /* Add margin to prevent overlapping with the fixed header */
 }
 
 table {

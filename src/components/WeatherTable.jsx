@@ -14,7 +14,6 @@ function ReagentsTable() {
             const response = await axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=d8115337380246f595b5dd898b5ed843`
             );
-            // Transform data to fit your table structure
             const transformedData = [
                 {
                     id: response.data.id,

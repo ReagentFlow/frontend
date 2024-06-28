@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import ReagentsTable from './components/ReagentsTable';
+import WeatherTable from './components/WeatherTable';
 import Settings from './components/Settings';
 import './styles/App.css';
 
@@ -14,6 +15,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/reagents" element={<ReagentsTable />} />
+                    <Route path="/weather" element={<WeatherTable />} />
                     <Route path="/settings" element={<Settings />} />
                 </Routes>
             </main>

@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import ReagentsTable from './components/ReagentsTable';
 import Settings from './components/Settings';
-import './App.css';
+import './styles/App.css';
 
 function App() {
     return (

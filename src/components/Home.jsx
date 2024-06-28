@@ -1,10 +1,12 @@
 import React from "react";
+import "../styles/Home.css";
 
 function Home() {
     return (
-        <div>
-            <h2>Welcome to ReagentFlow</h2>
-            <p>This is the home page</p>
+        <div className="home-container">
+            <div className="home-banner">
+                <h1>Добро пожаловать в ReagentFlow</h1>
+            </div>
         </div>
     );
 }

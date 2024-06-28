@@ -1,10 +1,12 @@
 import React from 'react';
+import '../styles/Settings.css';
 
 function Settings() {
     return (
-        <div>
-            <h2>Settings</h2>
-            <p>This is the settings page.</p>
+        <div className="settings-container">
+            <div className="settings-banner">
+                <h1>Настройки (в разработке)</h1>
+            </div>
         </div>
     );
 }

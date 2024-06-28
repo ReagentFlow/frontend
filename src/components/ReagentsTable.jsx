@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import './ReagentsTable.css';
+import '../styles/ReagentsTable.css';
 
 function ReagentsTable() {
     const [reagents, setReagents] = useState([]);

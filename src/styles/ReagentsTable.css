@@ -21,6 +21,10 @@ th {
     border: 3px solid #ffffff;
 }
 
+tbody td {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 tbody tr:nth-child(even) {
     background-color: #ffffff;
 }

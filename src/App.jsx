@@ -7,23 +7,27 @@ import Home from './components/Home';
 import ReagentsTable from './components/ReagentsTable';
 import WeatherTable from './components/WeatherTable';
 import Settings from './components/Settings';
+import PrivateRoute from './components/PrivateRoute';
+import { AuthProvider } from './components/AuthContext';
 import './styles/App.css';
 
 function App() {
     return (
-        <div className="App">
-            <Header />
-            <main>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/reagents" element={<ReagentsTable />} />
-                    <Route path="/weather" element={<WeatherTable />} />
-                    <Route path="/settings" element={<Settings />} />
-                </Routes>
-            </main>
-        </div>
+        <AuthProvider>
+            <div className="App">
+                <Header />
+                <main>
+                    <Routes>
+                        <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/reagents" element={<PrivateRoute><ReagentsTable /></PrivateRoute>} />
+                        <Route path="/weather" element={<WeatherTable />} />
+                        <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
+                    </Routes>
+                </main>
+            </div>
+        </AuthProvider>
     );
 }
 

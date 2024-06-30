@@ -38,7 +38,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1;
+    flex: 2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-link {
@@ -59,7 +62,7 @@
 .right-section {
     display: flex;
     align-items: center;
-    flex: 1;
+    flex: 2;
     justify-content: flex-end;
 }
 
@@ -73,4 +76,42 @@
 .settings-button img {
     width: 28px;
     height: 28px;
+}
+
+/* Media query for responsive layout */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 20px;
+    }
+
+    .left-section,
+    .right-section {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .nav-buttons {
+        position: static;
+        transform: none;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .nav-link {
+        margin: 5px 10px;
+        font-size: 16px;
+        padding: 5px 10px;
+    }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
 }

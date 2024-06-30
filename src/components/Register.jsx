@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 import '../styles/Auth.css';
 
 function Register() {
@@ -6,9 +8,19 @@ function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [inviteCode, setInviteCode] = useState('');
+    const { register } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            await register(email, username, password, inviteCode);
+            navigate('/login');
+        }
+        catch (error) {
+            console.error('Registration failed', error);
+        }
+
         console.log('Email:', email);
         console.log('Username:', username);
         console.log('Password:', password);

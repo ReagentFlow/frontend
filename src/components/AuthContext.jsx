@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
             email,
             username,
             password,
-            inviteCode,
+            invite_code: inviteCode,
         });
         return response;
     };
@@ -51,7 +51,26 @@ const AuthProvider = ({ children }) => {
         setAuthTokens(response.data);
         localStorage.setItem('authTokens', JSON.stringify(response.data));
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
-        // return response;
+        return response;
+    };
+
+    const createInviteCode = async (role) => {
+        if (role !== 'admin' && role !== 'user') {
+            throw new Error('Invalid role');
+        }
+        const response = await axios.post(API_URL + 'invite-codes/', {
+            role,
+        });
+        return response;
+    };
+
+    const getInviteCodes = async () => {
+        const response = await axios.get(API_URL + 'invite-codes/', {
+            headers: {
+                Authorization: `Bearer ${authTokens.access}`,
+            },
+        });
+        return response;
     };
 
     const contextData = {
@@ -61,6 +80,8 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         refreshTokens,
+        createInviteCode,
+        getInviteCodes,
     };
 
     return (

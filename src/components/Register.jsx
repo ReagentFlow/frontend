@@ -5,12 +5,14 @@ function Register() {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [inviteCode, setInviteCode] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Email:', email);
         console.log('Username:', username);
         console.log('Password:', password);
+        console.log('Invite Code:', inviteCode);
     };
 
     return (
@@ -30,7 +32,7 @@ function Register() {
                 <div className="input-group">
                     <input
                         type="text"
-                        placeholder="Имя пользователя"
+                        placeholder="ФИО"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
@@ -42,6 +44,15 @@ function Register() {
                         placeholder="Пароль"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="input-group">
+                    <input
+                        type="text"
+                        placeholder="Код приглашения"
+                        value={inviteCode}
+                        onChange={(e) => setInviteCode(e.target.value)}
                         required
                     />
                 </div>

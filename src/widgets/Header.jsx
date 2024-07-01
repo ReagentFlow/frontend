@@ -6,7 +6,7 @@ import settingsIcon from '../assets/settings.png';
 import { AuthContext } from '../components/AuthContext';
 
 function Header() {
-    const { user, logout } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     return (
         <div className="header">
@@ -19,8 +19,6 @@ function Header() {
                     <>
                         <Link to="/" className="nav-link">Главная</Link>
                         <Link to="/reagents" className="nav-link">Реагенты</Link>
-                        <Link to="/settings" className="nav-link">Настройки</Link>
-                        <button onClick={logout} className="nav-link">Выйти</button>
                     </>
                 ) : (
                     <>

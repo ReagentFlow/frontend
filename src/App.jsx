@@ -22,7 +22,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/reagents" element={<PrivateRoute><ReagentsTable /></PrivateRoute>} />
-                        <Route path="/weather" element={<WeatherTable />} />
+                        <Route path="/weather" element={<PrivateRoute><WeatherTable /></PrivateRoute>} />
                         <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
                     </Routes>
                 </main>

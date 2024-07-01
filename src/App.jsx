@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
+import Header from './widgets/Header';
 import Login from './components/Login';
 import Register from './components/Register';
-import Home from './components/Home';
-import ReagentsTable from './components/ReagentsTable';
-import WeatherTable from './components/WeatherTable';
-import Settings from './components/Settings';
+import Home from './pages/Home';
+import ReagentsTable from './pages/ReagentsTable';
+import WeatherTable from './pages/WeatherTable';
+import Settings from './pages/Settings';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './components/AuthContext';
 import './styles/App.css';

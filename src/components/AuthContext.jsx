@@ -35,11 +35,11 @@ const AuthProvider = ({ children }) => {
 
     const register = async (email, firstName, middleName, lastName, password, inviteCode) => {
         const response = await axios.post(API_URL + 'users/', {
-            email,
+            email: email,
             first_name: firstName,
             middle_name: middleName,
             last_name: lastName,
-            password,
+            password: password,
             invite_code: inviteCode,
         });
         return response;
@@ -47,8 +47,8 @@ const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         const response = await axios.post(API_URL + 'token/', {
-            email,
-            password,
+            email: email,
+            password: password,
         });
         setAuthTokens(response.data);
         setUser(response.data.access);

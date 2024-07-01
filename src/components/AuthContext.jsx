@@ -6,12 +6,32 @@ const API_URL = 'http://localhost:8000/auth/';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [authTokens, setAuthTokens] = useState(() =>
-        localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null
-    );
-    const [user, setUser] = useState(() =>
-        localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
-    );
+    // const [authTokens, setAuthTokens] = useState(() =>
+    //     localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null
+    // );
+    // const [user, setUser] = useState(() =>
+    //     localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
+    // );
+
+    const [authTokens, setAuthTokens] = useState(() => {
+        const tokens = localStorage.getItem('authTokens');
+        try {
+            return tokens ? JSON.parse(tokens) : null;
+        } catch (error) {
+            console.error("Error parsing authTokens from localStorage:", error);
+            return null;
+        }
+    });
+
+    const [user, setUser] = useState(() => {
+        const user = localStorage.getItem('user');
+        try {
+            return user ? JSON.parse(user) : null;
+        } catch (error) {
+            console.error("Error parsing user from localStorage:", error);
+            return null;
+        }
+    });
 
     const register = async (email, username, password, inviteCode) => {
         const response = await axios.post(API_URL + 'users/', {

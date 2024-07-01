@@ -33,10 +33,12 @@ const AuthProvider = ({ children }) => {
         }
     });
 
-    const register = async (email, username, password, inviteCode) => {
+    const register = async (email, firstName, middleName, lastName, password, inviteCode) => {
         const response = await axios.post(API_URL + 'users/', {
             email,
-            username,
+            first_name: firstName,
+            middle_name: middleName,
+            last_name: lastName,
             password,
             invite_code: inviteCode,
         });

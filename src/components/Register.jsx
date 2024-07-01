@@ -5,7 +5,9 @@ import '../styles/Auth.css';
 
 function Register() {
     const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [middleName, setMiddleName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [inviteCode, setInviteCode] = useState('');
     const { register } = useContext(AuthContext);
@@ -14,17 +16,19 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await register(email, username, password, inviteCode);
+            await register(email, firstName, middleName, lastName, password, inviteCode);
             navigate('/login');
         }
         catch (error) {
             console.error('Registration failed', error);
         }
 
-        console.log('Email:', email);
-        console.log('Username:', username);
-        console.log('Password:', password);
-        console.log('Invite Code:', inviteCode);
+        console.log('email:', email);
+        console.log('firstName:', firstName);
+        console.log('middleName:', middleName);
+        console.log('lastName:', lastName);
+        console.log('password:', password);
+        console.log('inviteCode:', inviteCode);
     };
 
     return (
@@ -44,9 +48,27 @@ function Register() {
                 <div className="input-group">
                     <input
                         type="text"
-                        placeholder="ФИО"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Фамилия"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="input-group">
+                    <input
+                        type="text"
+                        placeholder="Имя"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="input-group">
+                    <input
+                        type="text"
+                        placeholder="Отчество"
+                        value={middleName}
+                        onChange={(e) => setMiddleName(e.target.value)}
                         required
                     />
                 </div>

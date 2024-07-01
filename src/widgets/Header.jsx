@@ -18,7 +18,7 @@ function Header() {
                 {user ? (
                     <>
                         <Link to="/" className="nav-link">Главная</Link>
-                        <Link to="/weather" className="nav-link">Реагенты</Link>
+                        <Link to="/reagents" className="nav-link">Реагенты</Link>
                     </>
                 ) : (
                     <>

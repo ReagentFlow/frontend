@@ -49,9 +49,9 @@ const AuthProvider = ({ children }) => {
             password,
         });
         setAuthTokens(response.data);
-        setUser(response.data.user);
+        setUser(response.data.access);
         localStorage.setItem('authTokens', JSON.stringify(response.data));
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('user', JSON.stringify(response.data.access));
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
         return response;
     }
@@ -70,6 +70,7 @@ const AuthProvider = ({ children }) => {
         });
         setAuthTokens(response.data);
         localStorage.setItem('authTokens', JSON.stringify(response.data));
+        localStorage.setItem('user', JSON.stringify(response.data.access));
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
         return response;
     };

@@ -9,7 +9,7 @@ function Settings() {
         <div className="settings-container">
             <div className="settings-banner">
                 <h1>Настройки</h1>
-                <button onClick={logout} className="nav-link">Выйти</button>
+                <button onClick={logout} className="logout-button">Выйти</button>
             </div>
         </div>
     );

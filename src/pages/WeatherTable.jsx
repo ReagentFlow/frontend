@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import '../styles/ReagentsTable.css';
+import axios from 'axios';
 
 const cities = [
     'London,uk', 'Novosibirsk, ru', 'New York,us', 'Tokyo,jp', 'Paris,fr', 'Berlin,de',

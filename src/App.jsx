@@ -1,14 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from './widgets/Header';
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 import Home from './pages/Home';
 import ReagentsTable from './pages/ReagentsTable';
 import WeatherTable from './pages/WeatherTable';
 import Settings from './pages/Settings';
-import PrivateRoute from './components/PrivateRoute';
-import { AuthProvider } from './components/AuthContext';
+import PrivateRoute from './components/routes/PrivateRoute';
+import RedirectRoute from './components/routes/RedirectRoute';
+import { AuthProvider } from './components/auth/AuthContext';
 import './styles/App.css';
 
 function App() {
@@ -19,8 +20,8 @@ function App() {
                 <main>
                     <Routes>
                         <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<RedirectRoute><Login /></RedirectRoute>} />
+                        <Route path="/register" element={<RedirectRoute><Register /></RedirectRoute>} />
                         <Route path="/reagents" element={<PrivateRoute><ReagentsTable /></PrivateRoute>} />
                         <Route path="/weather" element={<PrivateRoute><WeatherTable /></PrivateRoute>} />
                         <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />

@@ -1,18 +1,9 @@
-import React, { createContext, useState } from "react";
-import axios from "axios";
-
-const API_URL = 'http://localhost:8000/auth/';
+import React, { createContext, useState, useEffect } from "react";
+import api from "../../api/axiosConfig";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    // const [authTokens, setAuthTokens] = useState(() =>
-    //     localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null
-    // );
-    // const [user, setUser] = useState(() =>
-    //     localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
-    // );
-
     const [authTokens, setAuthTokens] = useState(() => {
         const tokens = localStorage.getItem('authTokens');
         try {
@@ -34,7 +25,7 @@ const AuthProvider = ({ children }) => {
     });
 
     const register = async (email, firstName, middleName, lastName, password, inviteCode) => {
-        const response = await axios.post(API_URL + 'users/', {
+        const response = await api.post('auth/users/', {
             email: email,
             first_name: firstName,
             middle_name: middleName,
@@ -46,7 +37,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const login = async (email, password) => {
-        const response = await axios.post(API_URL + 'token/', {
+        const response = await api.post('auth/token/', {
             email: email,
             password: password,
         });
@@ -54,7 +45,7 @@ const AuthProvider = ({ children }) => {
         setUser(response.data.access);
         localStorage.setItem('authTokens', JSON.stringify(response.data));
         localStorage.setItem('user', JSON.stringify(response.data.access));
-        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
+        api.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
         return response;
     }
 
@@ -63,32 +54,22 @@ const AuthProvider = ({ children }) => {
         setUser(null);
         localStorage.removeItem('authTokens');
         localStorage.removeItem('user');
-        delete axios.defaults.headers.common['Authorization'];
-    };
-
-    const refreshTokens = async () => {
-        const response = await axios.post(API_URL + 'token/refresh/', {
-            refresh: authTokens.refresh,
-        });
-        setAuthTokens(response.data);
-        localStorage.setItem('authTokens', JSON.stringify(response.data));
-        localStorage.setItem('user', JSON.stringify(response.data.access));
-        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
-        return response;
+        delete api.defaults.headers.common['Authorization'];
+        window.location.href = '/login';
     };
 
     const createInviteCode = async (role) => {
         if (role !== 'admin' && role !== 'user') {
             throw new Error('Invalid role');
         }
-        const response = await axios.post(API_URL + 'invite-codes/', {
+        const response = await api.post('auth/invite_codes/', {
             role,
         });
         return response;
     };
 
     const getInviteCodes = async () => {
-        const response = await axios.get(API_URL + 'invite-codes/', {
+        const response = await api.get('auth/invite_codes/', {
             headers: {
                 Authorization: `Bearer ${authTokens.access}`,
             },
@@ -96,13 +77,19 @@ const AuthProvider = ({ children }) => {
         return response;
     };
 
+    useEffect(() => {
+        const authTokens = JSON.parse(localStorage.getItem('authTokens'));
+        if (authTokens) {
+            setUser(authTokens.access);
+        }
+    }, [authTokens]);
+
     const contextData = {
         user,
         authTokens,
         register,
         login,
         logout,
-        refreshTokens,
         createInviteCode,
         getInviteCodes,
     };

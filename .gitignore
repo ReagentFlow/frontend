@@ -23,5 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # mock data
-mock_data/
 mock_data/.venv/

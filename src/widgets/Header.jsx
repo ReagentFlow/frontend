@@ -14,25 +14,18 @@ function Header() {
                 <img src={logo} className="logo" alt="logo" />
                 <div className="logo-text">ReagentFlow</div>
             </div>
-            <div className="nav-buttons">
-                {user ? (
-                    <>
+            {user && (
+                <>
+                    <div className="nav-buttons">
                         <Link to="/" className="nav-link">Главная</Link>
                         <Link to="/reagents" className="nav-link">Реагенты</Link>
-                    </>
-                ) : (
-                    <>
-                        <Link to="/login" className="nav-link">Войти</Link>
-                        <Link to="/register" className="nav-link">Регистрация</Link>
-                    </>
-                )}
-            </div>
-            {user && (
-                <div className='right-section'>
-                    <Link to="/settings" className="settings-button">
-                        <img src={settingsIcon} alt="settings" />
-                    </Link>
-                </div>
+                    </div>
+                    <div className='right-section'>
+                        <Link to="/settings" className="settings-button">
+                            <img src={settingsIcon} alt="settings" />
+                        </Link>
+                    </div>
+                </>
             )}
         </div>
     );

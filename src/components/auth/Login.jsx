@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Auth.css';
 
 function Login() {
@@ -29,6 +31,7 @@ function Login() {
                 <p>Введите почту и пароль, чтобы войти</p>
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="input-group">
+                        <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
                         <input
                             type="email"
                             placeholder="Электронная почта"
@@ -38,6 +41,7 @@ function Login() {
                         />
                     </div>
                     <div className="input-group">
+                        <FontAwesomeIcon icon={faLock} className="input-icon" />
                         <input
                             type="password"
                             placeholder="Пароль"
@@ -48,6 +52,9 @@ function Login() {
                     </div>
                     <button type="submit" className="submit-button">Продолжить</button>
                 </form>
+                <div className='toggle-auth'>
+                    <p>Нет аккаунта? <Link to="/register">Зарегистироваться</Link></p>
+                </div>
             </div>
         </div>
     );

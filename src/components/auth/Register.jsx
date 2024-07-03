@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLock, faUser, faIdBadge } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Auth.css';
 
 function Register() {
@@ -38,6 +40,7 @@ function Register() {
                 <p>Заполните поля, чтобы зарегистрироваться</p>
                 <form onSubmit={handleSubmit} className="auth-form">
                     <div className="input-group">
+                        <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
                         <input
                             type="email"
                             placeholder="Электронная почта"
@@ -47,6 +50,7 @@ function Register() {
                         />
                     </div>
                     <div className="input-group">
+                        <FontAwesomeIcon icon={faUser} className="input-icon" />
                         <input
                             type="text"
                             placeholder="Фамилия"
@@ -56,6 +60,7 @@ function Register() {
                         />
                     </div>
                     <div className="input-group">
+                        <FontAwesomeIcon icon={faUser} className="input-icon" />
                         <input
                             type="text"
                             placeholder="Имя"
@@ -65,6 +70,7 @@ function Register() {
                         />
                     </div>
                     <div className="input-group">
+                        <FontAwesomeIcon icon={faUser} className="input-icon" />
                         <input
                             type="text"
                             placeholder="Отчество"
@@ -74,6 +80,7 @@ function Register() {
                         />
                     </div>
                     <div className="input-group">
+                        <FontAwesomeIcon icon={faLock} className="input-icon" />
                         <input
                             type="password"
                             placeholder="Пароль"
@@ -83,6 +90,7 @@ function Register() {
                         />
                     </div>
                     <div className="input-group">
+                        <FontAwesomeIcon icon={faIdBadge} className="input-icon" />
                         <input
                             type="text"
                             placeholder="Код приглашения"
@@ -93,6 +101,9 @@ function Register() {
                     </div>
                     <button type="submit" className="submit-button">Зарегистрироваться</button>
                 </form>
+                <div className="toggle-auth">
+                    <p>Уже есть аккаунт? <Link to="/login">Войти</Link></p>
+                </div>
             </div>
         </div>
     );

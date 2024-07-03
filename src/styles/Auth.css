@@ -17,32 +17,32 @@
     height: 800px;
     bottom: 0;
     right: 0;
-    background: url('../assets/background-logo.png') no-repeat center center;
+    background: url('../assets/background-logo.png') no-repeat right bottom;
     background-size: contain;
     z-index: 1;
 }
 
 .auth-container {
     position: absolute;
-    top: 30%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 30px;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 500px;
-    width: 100%;
+    width: 80%;
     margin: 150px auto 0;
     z-index: 2;
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 22px;
     color: #000;
     font-family: 'Inter', sans-serif;
@@ -50,7 +50,7 @@ h2 {
 }
 
 p {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #000;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
@@ -60,36 +60,72 @@ p {
 
 .auth-form {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .input-group {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     margin-bottom: 20px;
     width: 100%;
+    max-width: 450px;
+    position: relative;
 }
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 10px 40px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 16px;
     box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-icon {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
 }
 
 .submit-button {
     width: 100%;
+    max-width: 450px;
     padding: 10px;
     border: none;
-    border-radius: 5px;
-    background-color: #2da786c0;
-    color: #000000b7;
+    border-radius: 10px;
+    background-color: #2da786db;
+    color: #fff;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .submit-button:hover {
     background-color: #2da786;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-auth {
+    margin-top: 20px;
+}
+
+.toggle-auth p {
+    font-size: 14px;
+    color: #333;
+}
+
+.toggle-auth a {
+    color: #2D7FF8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.toggle-auth a:hover {
+    text-decoration: underline;
 }

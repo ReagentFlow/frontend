@@ -24,3 +24,6 @@ yarn-error.log*
 
 # mock data
 mock_data/.venv/
+
+# tmp data
+tmp/

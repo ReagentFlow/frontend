@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import api from "../../api/axiosConfig";
+import axiosInstance from "../../api/axiosConfig";
 
 const AuthContext = createContext();
 
@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
     });
 
     const register = async (email, firstName, middleName, lastName, password, inviteCode) => {
-        const response = await api.post('auth/users/', {
+        const response = await axiosInstance.post('auth/users/', {
             email: email,
             first_name: firstName,
             middle_name: middleName,
@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const login = async (email, password) => {
-        const response = await api.post('auth/token/', {
+        const response = await axiosInstance.post('auth/token/', {
             email: email,
             password: password,
         });
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
         setUser(response.data.access);
         localStorage.setItem('authTokens', JSON.stringify(response.data));
         localStorage.setItem('user', JSON.stringify(response.data.access));
-        api.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
         return response;
     }
 
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
         setUser(null);
         localStorage.removeItem('authTokens');
         localStorage.removeItem('user');
-        delete api.defaults.headers.common['Authorization'];
+        delete axiosInstance.defaults.headers.common['Authorization'];
         window.location.href = '/login';
     };
 
@@ -62,14 +62,14 @@ const AuthProvider = ({ children }) => {
         if (role !== 'admin' && role !== 'user') {
             throw new Error('Invalid role');
         }
-        const response = await api.post('auth/invite_codes/', {
+        const response = await axiosInstance.post('auth/invite_codes/', {
             role,
         });
         return response;
     };
 
     const getInviteCodes = async () => {
-        const response = await api.get('auth/invite_codes/', {
+        const response = await axiosInstance.get('auth/invite_codes/', {
             headers: {
                 Authorization: `Bearer ${authTokens.access}`,
             },

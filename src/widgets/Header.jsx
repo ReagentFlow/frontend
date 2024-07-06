@@ -20,6 +20,7 @@ function Header() {
                         <Link to="/" className="nav-link">Главная</Link>
                         <Link to="/containers" className="nav-link">Контейнеры</Link>
                         <Link to="/reagents" className="nav-link">Реагенты</Link>
+                        <Link to="/users" className="nav-link">Пользователи</Link>
                     </div>
                     <div className='right-section'>
                         <Link to="/settings" className="settings-button">

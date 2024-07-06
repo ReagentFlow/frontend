@@ -6,7 +6,7 @@ import Register from './components/auth/Register';
 import Home from './pages/Home';
 import ContainersTable from './pages/ContainersTable';
 import ReagentsTable from './pages/ReagentsTable';
-import WeatherTable from './pages/WeatherTable';
+import UsersTable from './pages/UsersTable';
 import Settings from './pages/Settings';
 import PrivateRoute from './components/routes/PrivateRoute';
 import RedirectRoute from './components/routes/RedirectRoute';
@@ -25,7 +25,7 @@ function App() {
                         <Route path="/register" element={<RedirectRoute><Register /></RedirectRoute>} />
                         <Route path="/reagents" element={<PrivateRoute><ReagentsTable /></PrivateRoute>} />
                         <Route path="/containers" element={<PrivateRoute><ContainersTable /></PrivateRoute>} />
-                        <Route path="/weather" element={<PrivateRoute><WeatherTable /></PrivateRoute>} />
+                        <Route path="/users" element={<PrivateRoute><UsersTable /></PrivateRoute>} />
                         <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
                     </Routes>
                 </main>

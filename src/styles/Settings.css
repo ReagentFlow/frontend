@@ -1,26 +1,92 @@
-.settings-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
+.settings-page {
+    font-family: Inter, sans-serif;
+    padding-top: 150px;
+    padding-left: 70px;
+    padding-right: 20px;
+    z-index: 2;
 }
 
-.settings-banner {
+.settings-page::before {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    bottom: 0;
+    right: 0;
+    background: url('../assets/background-logo.png') no-repeat right bottom;
+    background-size: contain;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+.profile-section {
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-color: #fff;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.profile-picture .placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.profile-info {
+    margin-left: 2rem;
+}
+
+.profile-info h3 {
+    margin-top: 0;
+}
+
+.personal-data-section {
+    margin-top: 40px;
+}
+
+.personal-data p,
+.additional-info p {
+    margin: 0.5rem 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: left;
+    margin-top: 40px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 30px;
+    max-width: 300px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.action-buttons button {
+    padding: 10px 15px;
+    border: none;
     border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    height: 200px;
-    margin: 0 auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-.settings-banner h1 {
-    font-size: 24px;
-    color: #333;
-    text-align: center;
+.action-buttons button:hover {
+    background-color: #ddd;
+}
+
+.action-buttons .logout-button {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.action-buttons .logout-button:hover {
+    background-color: #ff0000;
 }

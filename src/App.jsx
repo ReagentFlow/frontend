@@ -1,29 +1,36 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import Login from './components/Login';
-import Register from './components/Register';
-import Home from './components/Home';
-import ReagentsTable from './components/ReagentsTable';
-import WeatherTable from './components/WeatherTable';
-import Settings from './components/Settings';
+import Header from './widgets/Header';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import Home from './pages/Home';
+import ContainersTable from './pages/ContainersTable';
+import ReagentsTable from './pages/ReagentsTable';
+import UsersTable from './pages/UsersTable';
+import Settings from './pages/Settings';
+import PrivateRoute from './components/routes/PrivateRoute';
+import RedirectRoute from './components/routes/RedirectRoute';
+import { AuthProvider } from './components/auth/AuthContext';
 import './styles/App.css';
 
 function App() {
     return (
-        <div className="App">
-            <Header />
-            <main>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/reagents" element={<ReagentsTable />} />
-                    <Route path="/weather" element={<WeatherTable />} />
-                    <Route path="/settings" element={<Settings />} />
-                </Routes>
-            </main>
-        </div>
+        <AuthProvider>
+            <div className="App">
+                <Header />
+                <main>
+                    <Routes>
+                        <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+                        <Route path="/login" element={<RedirectRoute><Login /></RedirectRoute>} />
+                        <Route path="/register" element={<RedirectRoute><Register /></RedirectRoute>} />
+                        <Route path="/reagents" element={<PrivateRoute><ReagentsTable /></PrivateRoute>} />
+                        <Route path="/containers" element={<PrivateRoute><ContainersTable /></PrivateRoute>} />
+                        <Route path="/users" element={<PrivateRoute><UsersTable /></PrivateRoute>} />
+                        <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
+                    </Routes>
+                </main>
+            </div>
+        </AuthProvider>
     );
 }
 

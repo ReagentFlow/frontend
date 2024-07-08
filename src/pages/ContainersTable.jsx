@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../api/axiosConfig';
+import axios from 'axios';
+import API_URL from '../constants/constants';
 import '../styles/Table.css';
 
 function ContainersTable() {
@@ -11,7 +12,7 @@ function ContainersTable() {
 
     const fetchContainersData = async () => {
         try {
-            const response = await axiosInstance.get('data/containers/');
+            const response = await axios.get(`${API_URL}data/containers/`);
             setContainers(response.data);
         } catch (error) {
             console.error('Error fetching reagents data:', error);

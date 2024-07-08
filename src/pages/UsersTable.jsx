@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../api/axiosConfig';
+import axios from 'axios';
+import API_URL from '../constants/constants';
 import '../styles/Table.css';
 
 function UsersTable() {
@@ -11,7 +12,7 @@ function UsersTable() {
 
     const fetchUsersData = async () => {
         try {
-            const response = await axiosInstance.get('auth/users/');
+            const response = await axios.get(`${API_URL}auth/users/`);
             setUsers(response.data);
             console.log('Users data:', response.data);
         } catch (error) {

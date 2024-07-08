@@ -1,42 +1,76 @@
-.settings-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
+.settings-page {
+    font-family: Arial, sans-serif;
+    padding-top: 120px;
+    padding-left: 40px;
+    padding-right: 20px;
 }
 
-.settings-banner {
+.profile-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.profile-picture .placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.profile-info {
+    margin-left: 2rem;
+}
+
+.profile-info h3 {
+    margin-top: 0;
+}
+
+.personal-data-section {
+    margin-top: 40px;
+}
+
+.personal-data p,
+.additional-info p {
+    margin: 0.5rem 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.action-buttons {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
+    gap: 10px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    border-radius: 30px;
+    max-width: 300px;
+    width: 100%;
 }
 
-.settings-banner h1 {
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.logout-button {
-    padding: 10px 20px;
+.action-buttons button {
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #41AB92;
-    color: #fff;
-    font-size: 16px;
     cursor: pointer;
+    font-size: 16px;
     transition: background-color 0.3s ease;
 }
 
-.logout-button:hover {
-    background-color: #00c997;
+.action-buttons button:hover {
+    background-color: #ddd;
+}
+
+.action-buttons .logout-button {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.action-buttons .logout-button:hover {
+    background-color: #ff0000;
 }

@@ -8,10 +8,10 @@ const axiosInstance = axios.create({
 const refreshToken = async () => {
     try {
         const refresh = JSON.parse(localStorage.getItem('authTokens')).refresh;
-        const response = await axiosInstance.post('/auth/refresh/', { refresh });
-        const newAccessToken = response.data.access;
-        localStorage.setItem('accessToken', newAccessToken);
-        return newAccessToken;
+        const response = await axiosInstance.post('/auth/token/refresh/', { refresh });
+        response.data.refresh = refresh;
+        localStorage.setItem('authTokens', response.data);
+        return response.data.access;
     } catch (error) {
         console.error('Error refreshing token:', error);
         throw error;
@@ -20,9 +20,13 @@ const refreshToken = async () => {
 
 axiosInstance.interceptors.request.use(
     async (config) => {
-        const authTokens = JSON.parse(localStorage.getItem('authTokens'));
-        if (authTokens && authTokens.access) {
-            config.headers.Authorization = `Bearer ${authTokens.access}`;
+        try {
+            const authTokens = JSON.parse(localStorage.getItem('authTokens'));
+            if (authTokens && authTokens.access) {
+                config.headers.Authorization = `Bearer ${authTokens.access}`;
+            }
+        } catch (error) {
+            console.error('Error parsing authTokens from localStorage:', error);
         }
         return config;
     },

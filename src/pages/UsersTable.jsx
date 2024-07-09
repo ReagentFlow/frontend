@@ -1,27 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_URL from '../constants/constants';
-import { AuthContext } from '../components/auth/AuthContext';
 import '../styles/Table.css';
 
 function UsersTable() {
-    const { authTokens } = useContext(AuthContext);
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
         fetchUsersData();
-    }, [authTokens]);
+    }, []);
 
     const fetchUsersData = async () => {
-        if (!authTokens) {
-            return;
-        }
         try {
-            const response = await axios.get(`${API_URL}auth/users/`, {
-                headers: {
-                    Authorization: `Bearer ${authTokens.access}`,
-                },
-            });
+            const response = await axios.get(`${API_URL}auth/users/`);
             setUsers(response.data);
         } catch (error) {
             console.error('Error fetching users data:', error);

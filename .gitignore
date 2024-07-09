@@ -24,6 +24,7 @@ yarn-error.log*
 
 # mock data
 mock_data/.venv/
+__pycache__/
 
 # tmp data
 tmp/

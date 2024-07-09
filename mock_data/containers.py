@@ -40,7 +40,6 @@ if __name__ == '__main__':
         response = requests.post(url, headers=HEADERS, json=data)
         
         if response.status_code == 201:
-             print(f'Контейнер {data["name"]} успешно создан')
+            print(f'Контейнер {data["name"]} успешно создан')
         else:
-            pass
-            #print(f'Ошибка при создании контейнера {data["name"]}: {response.status_code} - {response.text}')
+            print(f'Ошибка при создании контейнера {data["name"]}: {response.status_code} - {response.text}')

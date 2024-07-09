@@ -21,7 +21,7 @@ def generate_container_data(container_id):
         'volume': 1,
         'density': round(uniform(1.0, 10.0), 2),
         'location': f'Шкаф №{randint(1, 10)}',
-        'precursor': choice(['true', 'false']),
+        'precursor': '',
         'cas': '',
         'qualification': randint(10, 100),
     }
@@ -30,10 +30,11 @@ def generate_container_data(container_id):
 if __name__ == '__main__':
     url = f'{API_URL}data/containers/'
 
-    for i in range(len(REAGENT_NAMES)):
+    for i in range(500):
         data = generate_container_data(container_id=i)
-        data['cas'] = REAGENTS[data['name']]['CAS']
+        data['cas'] = REAGENTS[data['name']]['cas']
         data['formula'] = REAGENTS[data['name']]['formula']
+        data['precursor'] = REAGENTS[data['name']]['precursor']
         response = requests.post(url, headers=HEADERS, json=data)
         
         if response.status_code == 201:

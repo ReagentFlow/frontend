@@ -30,6 +30,7 @@ function ContainersTable() {
                         <th>Формула</th>
                         <th>Масса</th>
                         <th>Объем</th>
+                        <th>Квалификация %</th>
                         <th>Прекурсор</th>
                         <th>Местоположение</th>
                     </tr>
@@ -43,6 +44,7 @@ function ContainersTable() {
                             <td>{container.formula}</td>
                             <td>{container.mass}</td>
                             <td>{container.volume}</td>
+                            <td>{container.qualification}</td>
                             <td>{container.precursor}</td>
                             <td>{container.location}</td>
                         </tr>

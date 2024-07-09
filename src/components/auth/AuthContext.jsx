@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import API_URL from "../../constants/constants";
 
@@ -24,6 +24,14 @@ const AuthProvider = ({ children }) => {
             return null;
         }
     });
+
+    useEffect(() => {
+        if (authTokens) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${authTokens.access}`;
+        } else {
+            delete axios.defaults.headers.common['Authorization'];
+        }
+    }, [authTokens]);
 
     const register = async (email, firstName, middleName, lastName, password, inviteCode) => {
         const response = await axios.post(`${API_URL}auth/users/`, {

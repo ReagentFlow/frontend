@@ -21,7 +21,6 @@ function Settings() {
             const roleMap = {
                 'admin': 'Администратор',
                 'user': 'Пользователь',
-                'User': 'Пользователь',
             };
             setUser({
                 fullName: `${response.data.last_name} ${response.data.first_name} ${response.data.middle_name}`,

@@ -14,7 +14,6 @@ function UsersTable() {
         try {
             const response = await axios.get(`${API_URL}auth/users/`);
             setUsers(response.data);
-            console.log('Users data:', response.data);
         } catch (error) {
             console.error('Error fetching users data:', error);
         }

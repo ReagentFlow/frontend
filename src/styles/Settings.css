@@ -53,7 +53,7 @@
 .button-container {
     display: flex;
     justify-content: left;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .action-buttons {
@@ -63,7 +63,7 @@
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 30px;
-    max-width: 300px;
+    max-width: 320px;
     width: 100%;
     position: relative;
     z-index: 2;
@@ -89,4 +89,66 @@
 
 .action-buttons .logout-button:hover {
     background-color: #ff0000;
+}
+
+.invite-codes-container {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 30px;
+    max-width: 300px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.invite-codes-container h3 {
+    margin: 0px 0 20px 0;
+    text-align: left;
+    font-weight: bold;
+}
+
+.invite-codes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.invite-code {
+    display: flex;
+    align-items: center;
+    background-color: #efefef;
+    border-radius: 10px;
+    padding: 10px 20px;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.invite-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.invite-code span {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: #f0f0f0;
+}
+
+.copy-button img {
+    width: 20px;
+    height: 20px;
 }

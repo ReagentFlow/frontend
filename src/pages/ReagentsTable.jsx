@@ -24,7 +24,6 @@ function ReagentsTable() {
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Название</th>
                         <th>Формула</th>
                         <th>Масса</th>
@@ -35,7 +34,6 @@ function ReagentsTable() {
                 <tbody>
                     {reagents.map((reagent) => (
                         <tr key={reagent.id}>
-                            <td>{reagent.id}</td>
                             <td>{reagent.name}</td>
                             <td>{reagent.formula}</td>
                             <td>{reagent.mass}</td>

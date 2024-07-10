@@ -11,6 +11,7 @@ function Register() {
     const [middleName, setMiddleName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
+    const [rePassword, setRePassword] = useState('');
     const [inviteCode, setInviteCode] = useState('');
     const { register } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await register(email, firstName, middleName, lastName, password, inviteCode);
+            await register(email, firstName, middleName, lastName, password, rePassword, inviteCode);
             navigate('/login');
         }
         catch (error) {
@@ -30,6 +31,7 @@ function Register() {
         console.log('middleName:', middleName);
         console.log('lastName:', lastName);
         console.log('password:', password);
+        console.log('rePassword:', rePassword);
         console.log('inviteCode:', inviteCode);
     };
 
@@ -86,6 +88,16 @@ function Register() {
                             placeholder="Пароль"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-group">
+                        <FontAwesomeIcon icon={faLock} className="input-icon" />
+                        <input
+                            type="password"
+                            placeholder="Повторите пароль"
+                            value={rePassword}
+                            onChange={(e) => setRePassword(e.target.value)}
                             required
                         />
                     </div>

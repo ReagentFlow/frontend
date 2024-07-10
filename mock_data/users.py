@@ -69,5 +69,5 @@ def create_user():
 if __name__ == '__main__':
     create_invite_code(1)
     create_invite_code(2)
-    for _ in range(2):
+    for _ in range(50):
         create_user()

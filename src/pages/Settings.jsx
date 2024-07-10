@@ -3,6 +3,7 @@ import { AuthContext } from '../components/auth/AuthContext';
 import axios from 'axios';
 import API_URL from '../constants/constants';
 import '../styles/Settings.css';
+import copyIcon from '../assets/copy-icon.png';
 
 function Settings() {
     const { logout } = useContext(AuthContext);
@@ -14,6 +15,7 @@ function Settings() {
         email: '',
         role: '',
     });
+    const [inviteCodes, setInviteCodes] = useState([]);
 
     const fetchUserData = async () => {
         try {
@@ -34,8 +36,19 @@ function Settings() {
         }
     };
 
+    const fetchInviteCodes = async () => {
+        try {
+            const response = await axios.get(`${API_URL}auth/invite_codes/`);
+            console.log('Invite codes:', response.data);
+            setInviteCodes(response.data.invite_codes);
+        } catch (error) {
+            console.error('Error fetching invite codes', error);
+        }
+    };
+
     useEffect(() => {
         fetchUserData();
+        fetchInviteCodes();
     }, []);
 
     const handleLogout = () => {
@@ -51,6 +64,11 @@ function Settings() {
     const handleChangeEmail = () => {
         // pass
         console.log('Change email');
+    };
+
+    const copyToClipboard = (code) => {
+        navigator.clipboard.writeText(code);
+        console.log('Copied to clipboard:', code);
     };
 
     return (
@@ -71,6 +89,22 @@ function Settings() {
                     <p><strong>Телефон:</strong> {user.phone}</p>
                     <p><strong>Электронная почта:</strong> {user.email}</p>
                     <p><strong>Роль:</strong> {user.role}</p>
+                </div>
+            </div>
+            <div className='invite-codes-container'>
+                <h3>Пригласительные коды</h3>
+                <div className='invite-codes'>
+                    {inviteCodes.map((invite) => (
+                        <div key={invite.id} className="invite-code">
+                            <div className="invite-info">
+                                <span>{invite.role === 'admin' ? 'Администратор' : 'Пользователь'}</span>
+                                <span>{invite.code}</span>
+                            </div>
+                            <button onClick={() => copyToClipboard(invite.code)} className="copy-button">
+                                <img src={copyIcon} alt="Copy" />
+                            </button>
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className="button-container">

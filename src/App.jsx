@@ -9,6 +9,7 @@ import ReagentsTable from './pages/ReagentsTable';
 import UsersTable from './pages/UsersTable';
 import Settings from './pages/Settings';
 import PrivateRoute from './components/routes/PrivateRoute';
+import AdminRoute from './components/routes/AdminRoute';
 import RedirectRoute from './components/routes/RedirectRoute';
 import { AuthProvider } from './components/auth/AuthContext';
 import './styles/App.css';
@@ -25,7 +26,7 @@ function App() {
                         <Route path="/register" element={<RedirectRoute><Register /></RedirectRoute>} />
                         <Route path="/reagents" element={<PrivateRoute><ReagentsTable /></PrivateRoute>} />
                         <Route path="/containers" element={<PrivateRoute><ContainersTable /></PrivateRoute>} />
-                        <Route path="/users" element={<PrivateRoute><UsersTable /></PrivateRoute>} />
+                        <Route path="/users" element={<AdminRoute><UsersTable /></AdminRoute>} />
                         <Route path="/settings" element={<PrivateRoute><Settings /></PrivateRoute>} />
                     </Routes>
                 </main>

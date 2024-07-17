@@ -6,7 +6,7 @@ import '../styles/Settings.css';
 import copyIcon from '../assets/copy-icon.png';
 
 function Settings() {
-    const { logout } = useContext(AuthContext);
+    const { logout, role } = useContext(AuthContext);
 
     const [user, setUser] = useState({
         fullName: '',
@@ -91,22 +91,24 @@ function Settings() {
                     <p><strong>Роль:</strong> {user.role}</p>
                 </div>
             </div>
-            <div className='invite-codes-container'>
-                <h3>Пригласительные коды</h3>
-                <div className='invite-codes'>
-                    {inviteCodes.map((invite) => (
-                        <div key={invite.id} className="invite-code">
-                            <div className="invite-info">
-                                <span>{invite.role === 'admin' ? 'Администратор' : 'Пользователь'}</span>
-                                <span>{invite.code}</span>
+            {role === 'admin' && (
+                <div className='invite-codes-container'>
+                    <h3>Пригласительные коды</h3>
+                    <div className='invite-codes'>
+                        {inviteCodes.map((invite) => (
+                            <div key={invite.id} className="invite-code">
+                                <div className="invite-info">
+                                    <span>{invite.role === 'admin' ? 'Администратор' : 'Пользователь'}</span>
+                                    <span>{invite.code}</span>
+                                </div>
+                                <button onClick={() => copyToClipboard(invite.code)} className="copy-button">
+                                    <img src={copyIcon} alt="Copy" />
+                                </button>
                             </div>
-                            <button onClick={() => copyToClipboard(invite.code)} className="copy-button">
-                                <img src={copyIcon} alt="Copy" />
-                            </button>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
             <div className="button-container">
                 <div className="action-buttons">
                     <button onClick={handleChangePassword}>Изменить пароль</button>

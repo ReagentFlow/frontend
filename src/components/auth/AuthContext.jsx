@@ -5,6 +5,9 @@ import API_URL from "../../constants/constants";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [role, setRole] = useState(null);
+
     const [authTokens, setAuthTokens] = useState(() => {
         const tokens = localStorage.getItem('authTokens');
         try {
@@ -53,15 +56,24 @@ const AuthProvider = ({ children }) => {
         });
         setAuthTokens(response.data);
         setUser(response.data.access);
+        setIsAuthenticated(true);
         localStorage.setItem('authTokens', JSON.stringify(response.data));
         localStorage.setItem('user', JSON.stringify(response.data.access));
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
+        try {
+            const response = await axios.get(`${API_URL}auth/users/me/`);
+            setRole(response.data.role);
+        } catch (error) {
+            console.error('Error fetching user role:', error);
+        }
         return response;
     }
 
     const logout = () => {
         setAuthTokens(null);
         setUser(null);
+        setIsAuthenticated(false);
+        setRole(null);
         localStorage.removeItem('authTokens');
         localStorage.removeItem('user');
         delete axios.defaults.headers.common['Authorization'];
@@ -90,6 +102,8 @@ const AuthProvider = ({ children }) => {
     const contextData = {
         user,
         authTokens,
+        isAuthenticated,
+        role,
         register,
         login,
         logout,

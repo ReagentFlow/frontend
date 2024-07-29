@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from 'components/auth/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/Auth.css';
+import 'styles/Auth.css';
 
 function Login() {
     const [email, setEmail] = useState('');

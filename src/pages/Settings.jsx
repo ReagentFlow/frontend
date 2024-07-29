@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../components/auth/AuthContext';
+import { AuthContext } from 'components/auth/AuthContext';
 import axios from 'axios';
-import API_URL from '../constants/constants';
-import '../styles/Settings.css';
-import copyIcon from '../assets/copy-icon.png';
+import API_URL from 'constants/constants';
+import 'styles/Settings.css';
+import copyIcon from 'assets/copy-icon.png';
 
 function Settings() {
     const { logout, role } = useContext(AuthContext);

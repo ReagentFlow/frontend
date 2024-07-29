@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/Header.css';
-import logo from '../assets/logo.png';
-import settingsIcon from '../assets/settings.png';
-import { AuthContext } from '../components/auth/AuthContext';
+import 'styles/Header.css';
+import logo from 'assets/logo.png';
+import settingsIcon from 'assets/settings.png';
+import { AuthContext } from 'components/auth/AuthContext';
 
 function Header() {
     const { user, role } = useContext(AuthContext);

@@ -26,8 +26,6 @@ function Settings() {
             };
             setUser({
                 fullName: `${response.data.last_name} ${response.data.first_name} ${response.data.middle_name}`,
-                birthDate: response.data.birth_date || '01.01.1970',
-                phone: response.data.phone || '8-800-555-35-35',
                 email: response.data.email,
                 role: roleMap[response.data.role] || response.data.role,
             });
@@ -85,8 +83,6 @@ function Settings() {
             <div className="personal-data-section">
                 <h3>Личные данные</h3>
                 <div className="personal-data">
-                    <p><strong>Дата рождения:</strong> {user.birthDate}</p>
-                    <p><strong>Телефон:</strong> {user.phone}</p>
                     <p><strong>Электронная почта:</strong> {user.email}</p>
                     <p><strong>Роль:</strong> {user.role}</p>
                 </div>

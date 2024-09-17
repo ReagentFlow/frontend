@@ -26,8 +26,8 @@ function ReagentsTable() {
                     <tr>
                         <th>Название</th>
                         <th>Формула</th>
-                        <th>Масса</th>
-                        <th>Объем</th>
+                        <th>Масса, г</th>
+                        <th>Объем, мл</th>
                         <th>Прекурсор</th>
                     </tr>
                 </thead>

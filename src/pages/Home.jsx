@@ -120,7 +120,7 @@ function Home() {
     return (
         <div className={styles.homePage}>
             <div className={styles.newContainerSection}>
-                <h3>Добавление нового контейнера</h3>
+                <h3>Функции</h3>
                 <button className={styles.addButton} onClick={openModal}>
                     Добавить контейнер
                 </button>

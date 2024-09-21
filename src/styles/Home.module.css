@@ -82,7 +82,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1001;
+    z-index: 2000;
     /* Выше Header */
 }
 
@@ -90,15 +90,15 @@
     background-color: #fff;
     border-radius: 30px;
     padding: 30px;
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
+    max-width: 450px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
 }
 
 .modalContainer h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
+    margin-bottom: 10px;
+    font-size: 20px;
     color: #000;
     font-weight: 600;
     text-align: center;
@@ -113,13 +113,13 @@
 .inputGroup {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     width: 100%;
 }
 
 .inputGroup label {
     margin-bottom: 5px;
-    font-size: 16px;
+    font-size: 14px;
     color: #000;
     font-weight: 500;
 }

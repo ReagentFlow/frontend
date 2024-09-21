@@ -8,7 +8,7 @@
 
 .settings-page::before {
     content: '';
-    position: absolute;
+    position: fixed;
     width: 800px;
     height: 800px;
     bottom: 0;

@@ -28,7 +28,6 @@ function Register() {
             console.error('Registration failed', error);
             if (error.response && error.response.data) {
                 const data = error.response.data;
-                // Извлечение всех сообщений об ошибках из объекта
                 const errorMessages = Object.values(data).flat();
                 setErrors(errorMessages);
             } else {

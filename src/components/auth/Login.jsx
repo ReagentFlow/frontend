@@ -8,20 +8,33 @@ import 'styles/Auth.css';
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         try {
             await login(email, password);
             navigate('/');
         } catch (error) {
             console.error('Login failed', error);
+            if (error.response && error.response.data) {
+                let errorMsg = '';
+                if (error.response.status == 401) {
+                    errorMsg = 'Неверный пароль или email'
+                } else {
+                    errorMsg = error.response.data.detail || 'Ошибка входа. Пожалуйста, попробуйте снова.';
+                }
+                setError(errorMsg);
+            } else {
+                setError('Неизвестная ошибка. Пожалуйста, попробуйте позже.');
+            }
         }
 
         console.log('Email:', email);
-        console.log('Password:', password);
+        // console.log('Password:', password);
     };
 
     return (
@@ -51,6 +64,7 @@ function Login() {
                         />
                     </div>
                     <button type="submit" className="submit-button">Продолжить</button>
+                    {error && <div className="error-message">{error}</div>}
                 </form>
                 <div className='toggle-auth'>
                     <p>Нет аккаунта? <Link to="/register">Зарегистироваться</Link></p>

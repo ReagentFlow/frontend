@@ -19,6 +19,11 @@ function ReagentsTable() {
         }
     };
 
+    const precursorMap = {
+        true: 'Да',
+        false: 'Нет'
+    }
+
     return (
         <div className="table-container">
             <table>
@@ -38,7 +43,7 @@ function ReagentsTable() {
                             <td>{reagent.formula}</td>
                             <td>{reagent.mass}</td>
                             <td>{reagent.volume}</td>
-                            <td>{reagent.precursor}</td>
+                            <td>{precursorMap[reagent.precursor]}</td>
                         </tr>
                     ))}
                 </tbody>

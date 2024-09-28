@@ -1,5 +1,3 @@
-// src/components/Home.js
-
 import React, { useState, useEffect } from "react";
 import styles from "styles/Home.module.css";
 import axios from "axios";
@@ -158,7 +156,7 @@ function Home() {
                                 />
                             </div>
                             <div className={styles.inputGroup}>
-                                <label htmlFor="mass">Масса *</label>
+                                <label htmlFor="mass">Масса, г *</label>
                                 <input
                                     type="number"
                                     id="mass"
@@ -170,7 +168,7 @@ function Home() {
                                 />
                             </div>
                             <div className={styles.inputGroup}>
-                                <label htmlFor="density">Плотность</label>
+                                <label htmlFor="density">Плотность, г/см3</label>
                                 <input
                                     type="number"
                                     id="density"

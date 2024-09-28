@@ -19,12 +19,17 @@ function ContainersTable() {
         }
     };
 
+    const precursorMap = {
+        true: 'Да',
+        false: 'Нет'
+    }
+
     return (
         <div className="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>№</th>
                         <th>ID Контейнера</th>
                         <th>Название</th>
                         <th>Формула</th>
@@ -45,7 +50,7 @@ function ContainersTable() {
                             <td>{container.mass}</td>
                             <td>{container.volume}</td>
                             <td>{container.qualification}</td>
-                            <td>{container.precursor}</td>
+                            <td>{precursorMap[container.precursor]}</td>
                             <td>{container.location}</td>
                         </tr>
                     ))}

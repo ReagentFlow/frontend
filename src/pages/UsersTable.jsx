@@ -29,7 +29,7 @@ function UsersTable() {
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>№</th>
                         <th>Фамилия</th>
                         <th>Имя</th>
                         <th>Отчество</th>

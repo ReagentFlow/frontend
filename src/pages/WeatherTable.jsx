@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/Table.css';
+import 'styles/Table.css';
 import axios from 'axios';
 
 const cities = [

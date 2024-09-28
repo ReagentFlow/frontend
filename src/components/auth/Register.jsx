@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from 'components/auth/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faUser, faIdBadge } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/Auth.css';
+import 'styles/Auth.css';
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -13,25 +13,34 @@ function Register() {
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
     const [inviteCode, setInviteCode] = useState('');
+    const [error, setErrors] = useState('');
     const { register } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrors('');
         try {
             await register(email, firstName, middleName, lastName, password, rePassword, inviteCode);
             navigate('/login');
         }
         catch (error) {
             console.error('Registration failed', error);
+            if (error.response && error.response.data) {
+                const data = error.response.data;
+                const errorMessages = Object.values(data).flat();
+                setErrors(errorMessages);
+            } else {
+                setErrors(['Неизвестная ошибка. Пожалуйста, попробуйте позже.']);
+            }
         }
 
         console.log('email:', email);
         console.log('firstName:', firstName);
         console.log('middleName:', middleName);
         console.log('lastName:', lastName);
-        console.log('password:', password);
-        console.log('rePassword:', rePassword);
+        // console.log('password:', password);
+        // console.log('rePassword:', rePassword);
         console.log('inviteCode:', inviteCode);
     };
 
@@ -112,6 +121,7 @@ function Register() {
                         />
                     </div>
                     <button type="submit" className="submit-button">Зарегистрироваться</button>
+                    {error && <div className="error-message">{error}</div>}
                 </form>
                 <div className="toggle-auth">
                     <p>Уже есть аккаунт? <Link to="/login">Войти</Link></p>

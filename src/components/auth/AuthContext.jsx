@@ -1,10 +1,13 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import API_URL from "../../constants/constants";
+import API_URL from "constants/constants";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [role, setRole] = useState(null);
+
     const [authTokens, setAuthTokens] = useState(() => {
         const tokens = localStorage.getItem('authTokens');
         try {
@@ -25,12 +28,31 @@ const AuthProvider = ({ children }) => {
         }
     });
 
+    const [loading, setLoading] = useState(true); // Состояние загрузки
+
     useEffect(() => {
-        if (authTokens) {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${authTokens.access}`;
-        } else {
-            delete axios.defaults.headers.common['Authorization'];
-        }
+        const initializeAuth = async () => {
+            if (authTokens) {
+                axios.defaults.headers.common['Authorization'] = `Bearer ${authTokens.access}`;
+                try {
+                    const response = await axios.get(`${API_URL}auth/users/me/`);
+                    setUser(response.data);
+                    setRole(response.data.role);
+                    setIsAuthenticated(true);
+                } catch (error) {
+                    console.error('Error fetching user data on mount:', error);
+                    setAuthTokens(null);
+                    setUser(null);
+                    setIsAuthenticated(false);
+                    setRole(null);
+                    localStorage.removeItem('authTokens');
+                    localStorage.removeItem('user');
+                }
+            }
+            setLoading(false);
+        };
+
+        initializeAuth();
     }, [authTokens]);
 
     const register = async (email, firstName, middleName, lastName, password, rePassword, inviteCode) => {
@@ -46,22 +68,56 @@ const AuthProvider = ({ children }) => {
         return response;
     };
 
+    // const login = async (email, password) => {
+    //     const response = await axios.post(`${API_URL}auth/token/`, {
+    //         email: email,
+    //         password: password,
+    //     });
+    //     setAuthTokens(response.data);
+    //     setUser(response.data.access);
+    //     setIsAuthenticated(true);
+    //     localStorage.setItem('authTokens', JSON.stringify(response.data));
+    //     localStorage.setItem('user', JSON.stringify(response.data.access));
+    //     axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
+    //     try {
+    //         const response = await axios.get(`${API_URL}auth/users/me/`);
+    //         setRole(response.data.role);
+    //     } catch (error) {
+    //         console.error('Error fetching user role:', error);
+    //     }
+    //     return response;
+    // }
+
     const login = async (email, password) => {
-        const response = await axios.post(`${API_URL}auth/token/`, {
-            email: email,
-            password: password,
-        });
-        setAuthTokens(response.data);
-        setUser(response.data.access);
-        localStorage.setItem('authTokens', JSON.stringify(response.data));
-        localStorage.setItem('user', JSON.stringify(response.data.access));
-        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
-        return response;
-    }
+        try {
+            const tokenResponse = await axios.post(`${API_URL}auth/token/`, {
+                email: email,
+                password: password,
+            });
+
+            setAuthTokens(tokenResponse.data);
+            localStorage.setItem('authTokens', JSON.stringify(tokenResponse.data));
+            axios.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data.access}`;
+
+            const userResponse = await axios.get(`${API_URL}auth/users/me/`);
+            setUser(userResponse.data);
+            setRole(userResponse.data.role);
+            setIsAuthenticated(true);
+            localStorage.setItem('user', JSON.stringify(userResponse.data));
+
+            return userResponse;
+        } catch (error) {
+            console.error('Login failed:', error);
+            throw error;
+        }
+    };
+
 
     const logout = () => {
         setAuthTokens(null);
         setUser(null);
+        setIsAuthenticated(false);
+        setRole(null);
         localStorage.removeItem('authTokens');
         localStorage.removeItem('user');
         delete axios.defaults.headers.common['Authorization'];
@@ -90,6 +146,8 @@ const AuthProvider = ({ children }) => {
     const contextData = {
         user,
         authTokens,
+        isAuthenticated,
+        role,
         register,
         login,
         logout,

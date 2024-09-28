@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import API_URL from '../constants/constants';
-import '../styles/Table.css';
+import API_URL from 'constants/constants';
+import 'styles/Table.css';
 
 function UsersTable() {
     const [users, setUsers] = useState([]);
@@ -19,16 +19,21 @@ function UsersTable() {
         }
     };
 
+    const roleMap = {
+        'admin': 'Администратор',
+        'user': 'Пользователь',
+    };
+
     return (
         <div className="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Email</th>
+                        <th>№</th>
                         <th>Фамилия</th>
                         <th>Имя</th>
                         <th>Отчество</th>
+                        <th>Email</th>
                         <th>Роль</th>
                     </tr>
                 </thead>
@@ -36,11 +41,11 @@ function UsersTable() {
                     {users.map((user) => (
                         <tr key={user.id}>
                             <td>{user.id}</td>
-                            <td>{user.email}</td>
                             <td>{user.last_name}</td>
                             <td>{user.first_name}</td>
                             <td>{user.middle_name}</td>
-                            <td>{user.role}</td>
+                            <td>{user.email}</td>
+                            <td>{roleMap[user.role]}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../components/auth/AuthContext';
+import { AuthContext } from 'components/auth/AuthContext';
 import axios from 'axios';
-import API_URL from '../constants/constants';
-import '../styles/Settings.css';
-import copyIcon from '../assets/copy-icon.png';
+import API_URL from 'constants/constants';
+import 'styles/Settings.css';
+import copyIcon from 'assets/copy-icon.png';
 
 function Settings() {
-    const { logout } = useContext(AuthContext);
+    const { logout, role } = useContext(AuthContext);
 
     const [user, setUser] = useState({
         fullName: '',
@@ -26,8 +26,6 @@ function Settings() {
             };
             setUser({
                 fullName: `${response.data.last_name} ${response.data.first_name} ${response.data.middle_name}`,
-                birthDate: response.data.birth_date || '01.01.1970',
-                phone: response.data.phone || '8-800-555-35-35',
                 email: response.data.email,
                 role: roleMap[response.data.role] || response.data.role,
             });
@@ -85,28 +83,28 @@ function Settings() {
             <div className="personal-data-section">
                 <h3>Личные данные</h3>
                 <div className="personal-data">
-                    <p><strong>Дата рождения:</strong> {user.birthDate}</p>
-                    <p><strong>Телефон:</strong> {user.phone}</p>
                     <p><strong>Электронная почта:</strong> {user.email}</p>
                     <p><strong>Роль:</strong> {user.role}</p>
                 </div>
             </div>
-            <div className='invite-codes-container'>
-                <h3>Пригласительные коды</h3>
-                <div className='invite-codes'>
-                    {inviteCodes.map((invite) => (
-                        <div key={invite.id} className="invite-code">
-                            <div className="invite-info">
-                                <span>{invite.role === 'admin' ? 'Администратор' : 'Пользователь'}</span>
-                                <span>{invite.code}</span>
+            {role === 'admin' && (
+                <div className='invite-codes-container'>
+                    <h3>Пригласительные коды</h3>
+                    <div className='invite-codes'>
+                        {inviteCodes.map((invite) => (
+                            <div key={invite.id} className="invite-code">
+                                <div className="invite-info">
+                                    <span>{invite.role === 'admin' ? 'Администратор' : 'Пользователь'}</span>
+                                    <span>{invite.code}</span>
+                                </div>
+                                <button onClick={() => copyToClipboard(invite.code)} className="copy-button">
+                                    <img src={copyIcon} alt="Copy" />
+                                </button>
                             </div>
-                            <button onClick={() => copyToClipboard(invite.code)} className="copy-button">
-                                <img src={copyIcon} alt="Copy" />
-                            </button>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
             <div className="button-container">
                 <div className="action-buttons">
                     <button onClick={handleChangePassword}>Изменить пароль</button>

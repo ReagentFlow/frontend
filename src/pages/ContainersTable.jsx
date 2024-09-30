@@ -26,6 +26,7 @@ function ContainersTable() {
     const [downloadError, setDownloadError] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
     const [deleteError, setDeleteError] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         fetchContainersData();
@@ -87,6 +88,10 @@ function ContainersTable() {
             ...prevData,
             [name]: type === "checkbox" ? checked : value,
         }));
+    };
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
     };
 
     const handleSubmit = async (e) => {
@@ -183,8 +188,22 @@ function ContainersTable() {
         }
     };
 
+    const filteredContainers = containers.filter(container =>
+        container.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div className="table-container">
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Поиск по названию..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    className="search-input"
+                />
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -200,7 +219,7 @@ function ContainersTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {containers.map((container) => (
+                    {filteredContainers.map((container) => (
                         <tr key={container.id} onClick={() => openModal(container)} className="table-row">
                             <td>{container.id}</td>
                             <td>{container.container_id}</td>

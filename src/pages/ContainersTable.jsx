@@ -22,6 +22,10 @@ function ContainersTable() {
     });
     const [errors, setErrors] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isDownloading, setIsDownloading] = useState(false);
+    const [downloadError, setDownloadError] = useState(null);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [deleteError, setDeleteError] = useState(null);
 
     useEffect(() => {
         fetchContainersData();
@@ -123,6 +127,59 @@ function ContainersTable() {
             }
         } finally {
             setIsSubmitting(false);
+        }
+    };
+
+    const downloadBarcode = async () => {
+        if (!selectedContainer) return;
+
+        setIsDownloading(true);
+        setDownloadError(null);
+
+        try {
+            const containerId = selectedContainer.container_id;
+            const downloadUrl = `${API_URL}data/generate-pdf/${containerId}/`;
+            window.open(downloadUrl, '_blank');
+        } catch (error) {
+            console.error('Error downloading barcode:', error);
+            if (error.response && error.response.data) {
+                setDownloadError('Не удалось загрузить штрихкод. Пожалуйста, попробуйте позже.');
+            } else {
+                setDownloadError('Произошла ошибка при загрузке штрихкода.');
+            }
+        } finally {
+            setIsDownloading(false);
+        }
+    };
+
+    const deleteContainer = async () => {
+        if (!selectedContainer) return;
+
+        const confirmDelete = window.confirm('Вы уверены, что хотите удалить этот контейнер? Это действие нельзя отменить.');
+
+        if (!confirmDelete) return;
+
+        setIsDeleting(true);
+        setDeleteError(null);
+
+        try {
+            await axios.delete(`${API_URL}data/containers/${selectedContainer.container_id}/`);
+
+            // Удаление контейнера из списка
+            setContainers((prevContainers) =>
+                prevContainers.filter((container) => container.id !== selectedContainer.id)
+            );
+
+            closeModal();
+        } catch (error) {
+            console.error('Ошибка при удалении контейнера:', error);
+            if (error.response && error.response.data) {
+                setDeleteError('Не удалось удалить контейнер. Пожалуйста, попробуйте позже.');
+            } else {
+                setDeleteError('Произошла ошибка при удалении контейнера.');
+            }
+        } finally {
+            setIsDeleting(false);
         }
     };
 
@@ -310,13 +367,43 @@ function ContainersTable() {
                                 </div>
                             )}
 
+                            {downloadError && (
+                                <div className="error-message">
+                                    <p>{downloadError}</p>
+                                </div>
+                            )}
+
+                            {deleteError && (
+                                <div className="error-message">
+                                    <p>{deleteError}</p>
+                                </div>
+                            )}
+
                             <div className="button-group">
-                                <button type="button" className="cancel-button" onClick={closeModal}>
-                                    Отмена
+                                <button
+                                    type="button"
+                                    className="download-button"
+                                    onClick={downloadBarcode}
+                                    disabled={isDownloading}
+                                >
+                                    {isDownloading ? "Загрузка..." : "Скачать штрихкод"}
                                 </button>
-                                <button type="submit" className="submit-button" disabled={isSubmitting}>
-                                    {isSubmitting ? "Сохранение..." : "Сохранить"}
-                                </button>
+                                <div className="right-buttons">
+                                    <button
+                                        type="button"
+                                        className="delete-button"
+                                        onClick={deleteContainer}
+                                        disabled={isDeleting}
+                                    >
+                                        {isDeleting ? "Удаление..." : "Удалить"}
+                                    </button>
+                                    <button type="button" className="cancel-button" onClick={closeModal}>
+                                        Отмена
+                                    </button>
+                                    <button type="submit" className="submit-button" disabled={isSubmitting}>
+                                        {isSubmitting ? "Сохранение..." : "Сохранить"}
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>

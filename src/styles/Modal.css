@@ -76,17 +76,27 @@
 
 .button-group {
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+    justify-content: space-between;
+    /* Разделение кнопок */
+    align-items: center;
     margin-top: 20px;
 }
 
+.right-buttons {
+    display: flex;
+    gap: 10px;
+    /* Расстояние между кнопками "Отмена" и "Сохранить" */
+}
+
 .cancel-button,
-.submit-button {
+.submit-button,
+.download-button,
+.delete-button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 .cancel-button {
@@ -102,4 +112,43 @@
 .submit-button:disabled {
     background-color: #a5d6c2;
     cursor: not-allowed;
+}
+
+.download-button {
+    background-color: #FFA500;
+    /* Оранжевый цвет для выделения */
+    color: #fff;
+}
+
+.download-button:disabled {
+    background-color: #FFD580;
+    cursor: not-allowed;
+}
+
+.delete-button {
+    background-color: #FF4C4C;
+    /* Красный цвет для удаления */
+    color: #fff;
+}
+
+.delete-button:disabled {
+    background-color: #FFB3B3;
+    cursor: not-allowed;
+}
+
+/* Дополнительные стили для hover эффектов */
+.cancel-button:hover {
+    background-color: #b3b3b3;
+}
+
+.submit-button:hover {
+    background-color: #36907b;
+}
+
+.download-button:hover {
+    background-color: #e59400;
+}
+
+.delete-button:hover {
+    background-color: #e60000;
 }

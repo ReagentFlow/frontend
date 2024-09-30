@@ -6,7 +6,7 @@ import API_URL from "constants/constants";
 function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formData, setFormData] = useState({
-        container_id: "",
+        // container_id: "",
         name: "",
         formula: "",
         mass: "",
@@ -30,7 +30,7 @@ function Home() {
     const closeModal = () => {
         setIsModalOpen(false);
         setFormData({
-            container_id: "",
+            // container_id: "",
             name: "",
             formula: "",
             mass: "",
@@ -53,30 +53,30 @@ function Home() {
         }));
     };
 
-    useEffect(() => {
-        const fetchContainerCount = async () => {
-            if (isModalOpen) {
-                setIsFetching(true);
-                setFetchError(null);
-                try {
-                    const response = await axios.get(`${API_URL}data/containers/`);
-                    const containers = response.data;
-                    const count = containers.length;
-                    setFormData((prevData) => ({
-                        ...prevData,
-                        container_id: count + 1, // Назначаем ID как количество + 1
-                    }));
-                } catch (err) {
-                    console.error("Ошибка при получении контейнеров:", err);
-                    setFetchError("Не удалось получить количество контейнеров. Попробуйте позже.");
-                } finally {
-                    setIsFetching(false);
-                }
-            }
-        };
+    // useEffect(() => {
+    //     const fetchContainerCount = async () => {
+    //         if (isModalOpen) {
+    //             setIsFetching(true);
+    //             setFetchError(null);
+    //             try {
+    //                 const response = await axios.get(`${API_URL}data/containers/`);
+    //                 const containers = response.data;
+    //                 const count = containers.length;
+    //                 setFormData((prevData) => ({
+    //                     ...prevData,
+    //                     container_id: count + 1, // Назначаем ID как количество + 1
+    //                 }));
+    //             } catch (err) {
+    //                 console.error("Ошибка при получении контейнеров:", err);
+    //                 setFetchError("Не удалось получить количество контейнеров. Попробуйте позже.");
+    //             } finally {
+    //                 setIsFetching(false);
+    //             }
+    //         }
+    //     };
 
-        fetchContainerCount();
-    }, [isModalOpen, API_URL]);
+    //     fetchContainerCount();
+    // }, [isModalOpen, API_URL]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -86,7 +86,7 @@ function Home() {
 
         try {
             const response = await axios.post(`${API_URL}data/containers/`, {
-                container_id: parseInt(formData.container_id, 10),
+                // container_id: parseInt(formData.container_id, 10),
                 name: formData.name,
                 formula: formData.formula,
                 mass: parseFloat(formData.mass),

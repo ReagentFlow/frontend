@@ -91,7 +91,7 @@ function ContainersTable() {
         setErrors([]);
 
         try {
-            const response = await axios.put(`${API_URL}data/containers/${selectedContainer.id}/`, {
+            const response = await axios.put(`${API_URL}data/containers/${selectedContainer.container_id}/`, {
                 container_id: parseInt(formData.container_id, 10),
                 name: formData.name,
                 formula: formData.formula,

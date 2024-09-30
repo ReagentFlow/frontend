@@ -100,6 +100,12 @@ function Home() {
 
             console.log("Контейнер создан:", response.data);
             setSuccessMessage("Контейнер успешно создан!");
+
+            // Открытие штрих кода в новом окне
+            const containerId = response.data.container_id;
+            const downloadUrl = `${API_URL}data/generate-pdf/${containerId}/`;
+            window.open(downloadUrl, '_blank');
+
             closeModal();
         } catch (err) {
             console.error(err);

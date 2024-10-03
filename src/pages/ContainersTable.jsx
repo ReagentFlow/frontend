@@ -326,14 +326,14 @@ function ContainersTable() {
                                 <div className="form-group">
                                     <label htmlFor="qualification">Квалификация *</label>
                                     <input
-                                        type="number"
+                                        type="text"
                                         id="qualification"
                                         name="qualification"
                                         value={formData.qualification}
                                         onChange={handleChange}
                                         required
-                                        min="0"
-                                        max="100"
+                                        min="1"
+                                        max="512"
                                     />
                                 </div>
                                 <div className="form-group">

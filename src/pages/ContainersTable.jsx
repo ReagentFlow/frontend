@@ -17,7 +17,7 @@ function ContainersTable() {
         density: "",
         location: "",
         precursor: false,
-        cas: "",
+        // cas: "",
         qualification: "",
     });
     const [errors, setErrors] = useState([]);
@@ -26,6 +26,7 @@ function ContainersTable() {
     const [downloadError, setDownloadError] = useState(null);
     const [isDeleting, setIsDeleting] = useState(false);
     const [deleteError, setDeleteError] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         fetchContainersData();
@@ -52,11 +53,11 @@ function ContainersTable() {
             name: container.name,
             formula: container.formula,
             mass: container.mass,
-            volume: container.volume,
+            volume: container.mass * container.density,
             density: container.density || "",
             location: container.location,
             precursor: container.precursor,
-            cas: container.cas || "",
+            // cas: container.cas || "",
             qualification: container.qualification,
         });
         setErrors([]);
@@ -89,6 +90,10 @@ function ContainersTable() {
         }));
     };
 
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
@@ -96,16 +101,16 @@ function ContainersTable() {
 
         try {
             const response = await axios.put(`${API_URL}data/containers/${selectedContainer.container_id}/`, {
-                container_id: parseInt(formData.container_id, 10),
+                // container_id: parseInt(formData.container_id, 10),
                 name: formData.name,
                 formula: formData.formula,
                 mass: parseFloat(formData.mass),
-                volume: parseFloat(formData.volume),
+                // volume: parseFloat(formData.volume),
                 density: formData.density !== "" ? parseFloat(formData.density) : null,
                 location: formData.location,
                 precursor: formData.precursor,
-                cas: formData.cas,
-                qualification: parseInt(formData.qualification, 10),
+                // cas: formData.cas,
+                qualification: formData.qualification,
             });
 
             // Обновление списка контейнеров
@@ -183,8 +188,22 @@ function ContainersTable() {
         }
     };
 
+    const filteredContainers = containers.filter(container =>
+        container.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div className="table-container">
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Поиск по названию..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    className="search-input"
+                />
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -194,20 +213,20 @@ function ContainersTable() {
                         <th>Формула</th>
                         <th>Масса, г</th>
                         <th>Объем, мл</th>
-                        <th>Квалификация, %</th>
+                        <th>Квалификация</th>
                         <th>Прекурсор</th>
                         <th>Местоположение</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {containers.map((container) => (
+                    {filteredContainers.map((container) => (
                         <tr key={container.id} onClick={() => openModal(container)} className="table-row">
                             <td>{container.id}</td>
                             <td>{container.container_id}</td>
                             <td>{container.name}</td>
                             <td>{container.formula}</td>
                             <td>{container.mass}</td>
-                            <td>{container.volume}</td>
+                            <td>{container.mass * container.density}</td>
                             <td>{container.qualification}</td>
                             <td>{precursorMap[container.precursor]}</td>
                             <td>{container.location}</td>
@@ -223,7 +242,7 @@ function ContainersTable() {
                         <form className="modal-form" onSubmit={handleSubmit}>
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label htmlFor="container_id">ID Контейнера *</label>
+                                    <label htmlFor="container_id">ID Контейнера</label>
                                     <input
                                         type="text"
                                         id="container_id"
@@ -279,7 +298,7 @@ function ContainersTable() {
 
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label htmlFor="volume">Объем, мл *</label>
+                                    <label htmlFor="volume">Объем, мл</label>
                                     <input
                                         type="number"
                                         id="volume"
@@ -287,7 +306,7 @@ function ContainersTable() {
                                         value={formData.volume}
                                         onChange={handleChange}
                                         required
-                                        step="any"
+                                        readOnly
                                     />
                                 </div>
                                 <div className="form-group">
@@ -305,7 +324,7 @@ function ContainersTable() {
 
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label htmlFor="qualification">Квалификация, % *</label>
+                                    <label htmlFor="qualification">Квалификация *</label>
                                     <input
                                         type="number"
                                         id="qualification"
@@ -330,7 +349,7 @@ function ContainersTable() {
                             </div>
 
                             <div className="form-row">
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <label htmlFor="cas">CAS</label>
                                     <input
                                         type="text"
@@ -341,7 +360,7 @@ function ContainersTable() {
                                         minLength="1"
                                         maxLength="100"
                                     />
-                                </div>
+                                </div> */}
                                 <div className="form-group">
                                     <label htmlFor="location">Местоположение *</label>
                                     <input

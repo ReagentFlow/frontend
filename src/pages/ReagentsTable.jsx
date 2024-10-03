@@ -41,8 +41,11 @@ function ReagentsTable() {
                         <tr key={reagent.id}>
                             <td>{reagent.name}</td>
                             <td>{reagent.formula}</td>
-                            <td>{reagent.mass}</td>
-                            <td>{reagent.volume}</td>
+                            <td>
+                                {reagent.mass}
+                                {reagent.mass < 20 && <span className="low-mass-indicator"> &#9888;</span>}
+                            </td>
+                            <td>{reagent.mass * reagent.density}</td>
                             <td>{precursorMap[reagent.precursor]}</td>
                         </tr>
                     ))}

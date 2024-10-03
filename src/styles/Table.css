@@ -34,6 +34,13 @@ tbody tr:hover {
     background-color: #ddd;
 }
 
+.low-mass-indicator {
+    color: red;
+    /* Цвет индикатора */
+    margin-left: 5px;
+    font-weight: bold;
+}
+
 .search-container {
     margin-bottom: 20px;
     display: flex;

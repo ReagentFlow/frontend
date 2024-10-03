@@ -10,12 +10,12 @@ function Home() {
         name: "",
         formula: "",
         mass: "",
-        volume: "0",
-        density: "1",
-        location: "0",
+        // volume: "",
+        density: "",
+        location: "",
         precursor: false,
-        cas: "0",
-        qualification: "0",
+        // cas: "0",
+        qualification: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
@@ -34,11 +34,11 @@ function Home() {
             name: "",
             formula: "",
             mass: "",
-            volume: "",
+            // volume: "",
             density: "",
             location: "",
             precursor: false,
-            cas: "",
+            // cas: "",
             qualification: "",
         });
         setError(null);
@@ -90,12 +90,12 @@ function Home() {
                 name: formData.name,
                 formula: formData.formula,
                 mass: parseFloat(formData.mass),
-                volume: parseFloat(formData.volume),
+                // volume: parseFloat(formData.volume),
                 density: parseFloat(formData.density),
                 location: formData.location,
                 precursor: formData.precursor,
-                cas: formData.cas,
-                qualification: parseInt(formData.qualification, 10),
+                // cas: formData.cas,
+                qualification: formData.qualification,
             });
 
             console.log("Контейнер создан:", response.data);
@@ -174,18 +174,19 @@ function Home() {
                                 />
                             </div>
                             <div className={styles.inputGroup}>
-                                <label htmlFor="density">Плотность, г/см3</label>
+                                <label htmlFor="density">Плотность, г/см3 *</label>
                                 <input
                                     type="number"
                                     id="density"
                                     name="density"
                                     value={formData.density}
                                     onChange={handleChange}
+                                    required
                                     step="any"
                                 />
                             </div>
                             <div className={styles.inputGroup}>
-                                <label htmlFor="location">Местоположение</label>
+                                <label htmlFor="location">Местоположение *</label>
                                 <input
                                     type="text"
                                     id="location"
@@ -206,7 +207,7 @@ function Home() {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className={styles.inputGroup}>
+                            {/* <div className={styles.inputGroup}>
                                 <label htmlFor="cas">CAS</label>
                                 <input
                                     type="text"
@@ -217,17 +218,17 @@ function Home() {
                                     minLength="1"
                                     maxLength="100"
                                 />
-                            </div>
+                            </div> */}
                             <div className={styles.inputGroup}>
-                                <label htmlFor="qualification">Квалификация, %</label>
+                                <label htmlFor="qualification">Квалификация  *</label>
                                 <input
-                                    type="number"
+                                    type="text"
                                     id="qualification"
                                     name="qualification"
                                     value={formData.qualification}
                                     onChange={handleChange}
-                                    min="-2147483648"
-                                    max="2147483647"
+                                    minLength="1"
+                                    maxLength="512"
                                 />
                             </div>
                             {error && <p className={styles.errorMessage}>{error}</p>}

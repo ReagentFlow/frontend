@@ -17,7 +17,6 @@ function ContainersTable() {
         density: "",
         location: "",
         precursor: false,
-        // cas: "",
         qualification: "",
     });
     const [errors, setErrors] = useState([]);
@@ -57,7 +56,6 @@ function ContainersTable() {
             density: container.density || "",
             location: container.location,
             precursor: container.precursor,
-            // cas: container.cas || "",
             qualification: container.qualification,
         });
         setErrors([]);
@@ -101,15 +99,12 @@ function ContainersTable() {
 
         try {
             const response = await axios.put(`${API_URL}data/containers/${selectedContainer.container_id}/`, {
-                // container_id: parseInt(formData.container_id, 10),
                 name: formData.name,
                 formula: formData.formula,
                 mass: parseFloat(formData.mass),
-                // volume: parseFloat(formData.volume),
                 density: formData.density !== "" ? parseFloat(formData.density) : null,
                 location: formData.location,
                 precursor: formData.precursor,
-                // cas: formData.cas,
                 qualification: formData.qualification,
             });
 
@@ -349,18 +344,6 @@ function ContainersTable() {
                             </div>
 
                             <div className="form-row">
-                                {/* <div className="form-group">
-                                    <label htmlFor="cas">CAS</label>
-                                    <input
-                                        type="text"
-                                        id="cas"
-                                        name="cas"
-                                        value={formData.cas}
-                                        onChange={handleChange}
-                                        minLength="1"
-                                        maxLength="100"
-                                    />
-                                </div> */}
                                 <div className="form-group">
                                     <label htmlFor="location">Местоположение *</label>
                                     <input

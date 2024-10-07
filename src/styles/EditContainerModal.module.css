@@ -1,0 +1,148 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContainer {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modalContainer h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.formRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.formGroup label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formGroup input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formGroupCheckbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 48%;
+}
+
+.formGroupCheckbox label {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.errorMessage {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.rightButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.cancelButton,
+.submitButton,
+.downloadButton,
+.deleteButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancelButton {
+    background-color: #ccc;
+    color: #000;
+}
+
+.submitButton {
+    background-color: #41AB92;
+    color: #fff;
+}
+
+.submitButton:disabled {
+    background-color: #a5d6c2;
+    cursor: not-allowed;
+}
+
+.downloadButton {
+    background-color: #FFA500;
+    color: #fff;
+}
+
+.downloadButton:disabled {
+    background-color: #FFD580;
+    cursor: not-allowed;
+}
+
+.deleteButton {
+    background-color: #FF4C4C;
+    color: #fff;
+}
+
+.deleteButton:disabled {
+    background-color: #FFB3B3;
+    cursor: not-allowed;
+}
+
+.cancelButton:hover {
+    background-color: #b3b3b3;
+}
+
+.submitButton:hover {
+    background-color: #36907b;
+}
+
+.downloadButton:hover {
+    background-color: #e59400;
+}
+
+.deleteButton:hover {
+    background-color: #e60000;
+}

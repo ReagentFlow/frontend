@@ -5,6 +5,7 @@ import 'styles/Table.css';
 
 function ReagentsTable() {
     const [reagents, setReagents] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         fetchReagentsData();
@@ -24,8 +25,25 @@ function ReagentsTable() {
         false: 'Нет'
     }
 
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+    const filteredContainers = reagents.filter(reagent =>
+        reagent.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <div className="table-container">
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Поиск по названию..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    className="search-input"
+                />
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -33,11 +51,12 @@ function ReagentsTable() {
                         <th>Формула</th>
                         <th>Масса, г</th>
                         <th>Объем, мл</th>
+                        <th>Квалификация</th>
                         <th>Прекурсор</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {reagents.map((reagent) => (
+                    {filteredContainers.map((reagent) => (
                         <tr key={reagent.id}>
                             <td>{reagent.name}</td>
                             <td>{reagent.formula}</td>
@@ -45,7 +64,8 @@ function ReagentsTable() {
                                 {reagent.mass}
                                 {reagent.mass < 20 && <span className="low-mass-indicator"> &#9888;</span>}
                             </td>
-                            <td>{reagent.mass * reagent.density}</td>
+                            <td>{(reagent.mass / reagent.density).toFixed(3)}</td>
+                            <td>{reagent.qualification}</td>
                             <td>{precursorMap[reagent.precursor]}</td>
                         </tr>
                     ))}

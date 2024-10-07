@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import Header from 'widgets/Header';
 import Login from 'components/auth/Login';
 import Register from 'components/auth/Register';
-// import Home from 'pages/Home';
 import ContainersTable from 'pages/ContainersTable';
 import ReagentsTable from 'pages/ReagentsTable';
 import UsersTable from 'pages/UsersTable';
@@ -21,7 +20,6 @@ function App() {
                 <Header />
                 <main>
                     <Routes>
-                        {/* <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} /> */}
                         <Route path="/login" element={<RedirectRoute><Login /></RedirectRoute>} />
                         <Route path="/register" element={<RedirectRoute><Register /></RedirectRoute>} />
                         <Route path="/reagents" element={<PrivateRoute><ReagentsTable /></PrivateRoute>} />

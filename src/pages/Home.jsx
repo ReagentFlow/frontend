@@ -89,12 +89,12 @@ function Home() {
 
     return (
         <div className={styles.homePage}>
-            <div className={styles.newContainerSection}>
+            {/* <div className={styles.newContainerSection}>
                 <h3>Функции</h3>
                 <button className={styles.addButton} onClick={openModal}>
                     Добавить контейнер
                 </button>
-            </div>
+            </div> */}
 
             {isModalOpen && (
                 <div className={styles.modalOverlay}>

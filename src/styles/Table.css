@@ -41,6 +41,13 @@ tbody tr:hover {
     font-weight: bold;
 }
 
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 5px; */
+}
+
 .search-container {
     margin-bottom: 20px;
     display: flex;
@@ -53,4 +60,25 @@ tbody tr:hover {
     border: 2px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+}
+
+.add-button-container {
+    /* pass */
+}
+
+.addButton {
+    padding: 10px 20px;
+    background-color: #2da786db;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.addButton:hover {
+    background-color: #2da786;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

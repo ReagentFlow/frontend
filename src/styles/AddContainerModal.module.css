@@ -1,0 +1,134 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContainer {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modalContainer h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.inputGroup label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+
+.inputGroup input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inputGroupCheckbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.inputGroupCheckbox label {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+}
+
+.inputGroupCheckbox input {
+    width: 20px;
+    height: 20px;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.cancelButton,
+.submitButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancelButton {
+    background-color: #ccc;
+    color: #000;
+    margin-right: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.cancelButton:hover {
+    background-color: #b3b3b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submitButton {
+    background-color: #2da786db;
+    color: #fff;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submitButton:hover {
+    background-color: #2da786;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submitButton:disabled {
+    background-color: #a5d6c2;
+    cursor: not-allowed;
+}
+
+.errorMessage {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.successMessage {
+    color: green;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}

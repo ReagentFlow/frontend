@@ -3,6 +3,7 @@ import axios from 'axios';
 import API_URL from 'constants/constants';
 import 'styles/Table.css';
 import 'styles/Modal.css';
+import AddContainerModal from 'components/AddContainerModal';
 
 function ContainersTable() {
     const [containers, setContainers] = useState([]);
@@ -52,7 +53,7 @@ function ContainersTable() {
             name: container.name,
             formula: container.formula,
             mass: container.mass,
-            volume: container.mass * container.density,
+            volume: (container.mass / container.density).toFixed(3),
             density: container.density || "",
             location: container.location,
             precursor: container.precursor,
@@ -187,16 +188,27 @@ function ContainersTable() {
         container.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const handleAddSuccess = (newContainer) => {
+        setContainers(prevContainers => [...prevContainers, newContainer]);
+    };
+
     return (
         <div className="table-container">
-            <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Поиск по названию..."
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    className="search-input"
-                />
+            <div className="header-container">
+                <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Поиск по названию..."
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        className="search-input"
+                    />
+                </div>
+                <div className="add-button-container">
+                    <button className="addButton" onClick={() => setIsModalOpen(true)}>
+                        Добавить контейнер
+                    </button>
+                </div>
             </div>
 
             <table>
@@ -221,7 +233,7 @@ function ContainersTable() {
                             <td>{container.name}</td>
                             <td>{container.formula}</td>
                             <td>{container.mass}</td>
-                            <td>{container.mass * container.density}</td>
+                            <td>{(container.mass / container.density).toFixed(3)}</td>
                             <td>{container.qualification}</td>
                             <td>{precursorMap[container.precursor]}</td>
                             <td>{container.location}</td>
@@ -230,7 +242,7 @@ function ContainersTable() {
                 </tbody>
             </table>
 
-            {isModalOpen && selectedContainer && (
+            {isModalOpen && selectedContainer ? (
                 <div className="modal-overlay" onClick={closeModal}>
                     <div className="modal-container" onClick={(e) => e.stopPropagation()}>
                         <h2>Редактирование контейнера</h2>
@@ -410,6 +422,12 @@ function ContainersTable() {
                         </form>
                     </div>
                 </div>
+            ) : (
+                <AddContainerModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    onSuccess={handleAddSuccess}
+                />
             )}
         </div>
     );

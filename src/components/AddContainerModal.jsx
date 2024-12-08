@@ -48,16 +48,22 @@ const AddContainerModal = ({ isOpen, onClose, onSuccess }) => {
             // Открытие штрихкода в новом окне
             const containerId = response.data.container_id;
             const downloadUrl = `${API_URL}data/generate-pdf/${containerId}/`;
-            window.open(downloadUrl, '_blank');
+            window.open(downloadUrl, "_blank");
 
             onSuccess(response.data); // Обновить список контейнеров в родительском компоненте
             onClose();
         } catch (err) {
             console.error(err);
             if (err.response) {
-                setError(`Ошибка: ${err.response.data.detail || err.response.statusText}`);
+                setError(
+                    `Ошибка: ${
+                        err.response.data.detail || err.response.statusText
+                    }`
+                );
             } else if (err.request) {
-                setError("Не удалось подключиться к серверу. Проверьте ваше интернет-соединение.");
+                setError(
+                    "Не удалось подключиться к серверу. Проверьте ваше интернет-соединение."
+                );
             } else {
                 setError("Произошла ошибка. Пожалуйста, попробуйте снова.");
             }
@@ -161,15 +167,25 @@ const AddContainerModal = ({ isOpen, onClose, onSuccess }) => {
                     </div>
                     {error && <p className={styles.errorMessage}>{error}</p>}
                     <div className={styles.buttonGroup}>
-                        <button type="button" className={styles.cancelButton} onClick={onClose}>
+                        <button
+                            type="button"
+                            className={styles.cancelButton}
+                            onClick={onClose}
+                        >
                             Отмена
                         </button>
-                        <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+                        <button
+                            type="submit"
+                            className={styles.submitButton}
+                            disabled={isSubmitting}
+                        >
                             {isSubmitting ? "Создание..." : "Создать"}
                         </button>
                     </div>
                 </form>
-                {successMessage && <p className={styles.successMessage}>{successMessage}</p>}
+                {successMessage && (
+                    <p className={styles.successMessage}>{successMessage}</p>
+                )}
             </div>
         </div>
     );
